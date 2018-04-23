@@ -1,0 +1,94 @@
+body{
+  background-color: white;
+}
+#content {
+  display:flex;
+  flex-direction:column;
+  justify-content: space-around;
+}
+#toprow {
+  display:flex;
+  flex-direction:row;
+  justify-content: space-around;
+}
+#topicslist {
+  display:flex;
+  flex-direction:column;
+  width:45%;
+  height:800px;
+  margin-top:50px;
+  background-color: white;
+}
+#toptopics {
+  display:flex;
+  flex-direction:column;
+  width:45%;
+  height:800px;
+  margin-top:50px;
+  background-color: white;
+}
+#topquestions {
+  display:flex;
+  flex-direction:column;
+  width:45%;
+  height:800px;
+  margin-top:50px;
+  background-color: white;
+}
+#bottomrow {
+  display:flex;
+  flex-direction:row;
+  justify-content: space-around;
+}
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
+#controllers {
+  margin-top:50px;
+}
+/* Remove margins and padding from the list */
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Style the list items */
+ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+    background: #ddd;
+}
+
+.legend {
+  font-family: 'Raleway', sans-serif;
+  fill: #333333;
+}
+
+.tooltip {
+  fill: #333333;
+}
