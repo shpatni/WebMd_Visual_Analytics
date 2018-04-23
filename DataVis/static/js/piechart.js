@@ -94,8 +94,6 @@ function drawPieChart(data) {
                 table.order( [ 0, 'asc' ] ).draw();
                 table.page(pageNum).draw(false);
                 offset = index - pageNum*table.page.len();
-				console.log(offset);
-				console.log(index);
                 tableRow = document.getElementsByTagName("tbody")[0]['children'][offset];
                 tableRow.classList.add("selected");
               }
