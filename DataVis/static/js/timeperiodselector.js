@@ -117,7 +117,7 @@ function renderSlider(dataset, settings, callback) {
         elements.$minText = svg.append('text')
             .attr("x", settings.min)
             .attr("y", settings.radius * 3 + settings.offset)
-            .attr("fill", "black")
+            .attr("fill", "#004d66").style("font-size", "13px").style("font-weight","bold").style("font-family","Georgia")
             .attr('fill-opacity', settings.opacity.medium)
             .attr('text-anchor', 'middle')
             .text(settings.translater.apply(self, [settings.min]).text);
@@ -134,7 +134,7 @@ function renderSlider(dataset, settings, callback) {
         elements.$maxText = svg.append('text')
             .attr("x", settings.max)
             .attr("y", settings.radius * 3 + settings.offset)
-            .attr("fill", "black")
+            .attr("fill", "#004d66").style("font-size", "13px").style("font-weight","bold").style("font-family","Georgia")
             .attr("fill-opacity", settings.opacity.medium)
             .attr("text-anchor", "middle")
             .text(settings.translater.apply(self, [settings.max]).text);
@@ -282,7 +282,7 @@ function renderSlider(dataset, settings, callback) {
         };
     }(timeScale);
 
-    var slider = new RangeSlider(g, settings.dim.width, handles.size, 'blue', translater, callback);
+    var slider = new RangeSlider(g, settings.dim.width, handles.size, '#006699', translater, callback);
 
     //setup handle dragging
     slider.elements.$min.call(d3.drag()

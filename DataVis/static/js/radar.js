@@ -7,12 +7,13 @@ function RadarChart(id, data, options) {
 	 maxValue: 0, 			//What is the value that the biggest circle will represent
 	 labelFactor: 1.25, 	//How much farther than the radius of the outer circle should the labels be placed
 	 wrapWidth: 60, 		//The number of pixels after which a label needs to be given a new line
-	 opacityArea: 0.35, 	//The opacity of the area of the blob
-	 dotRadius: 4, 			//The size of the colored circles of each blog
+	 opacityArea: 0.5, 	//The opacity of the area of the blob
+	 dotRadius: 5, 			//The size of the colored circles of each blog
 	 opacityCircles: 0.1, 	//The opacity of the circles of each blob
 	 strokeWidth: 2, 		//The width of the stroke around each blob
 	 roundStrokes: false,	//If true the area and stroke will follow a round path (cardinal-closed)
-	 color: d3.scaleOrdinal(d3.schemeCategory10)	//Color function
+	 // color: d3.scaleOrdinal(d3.schemeCategory10)	//Color function
+	 color: d3.scaleOrdinal().range(["#e6b800", "#cc3300"])
 	};
 
 	//Put all of the options into a variable called cfg
@@ -27,7 +28,7 @@ function RadarChart(id, data, options) {
 
 	var allAxis = (data[0].map(function(i, j){return i.axis})),	//Names of each axis
 		total = allAxis.length,					//The number of different axes
-		radius = Math.min(cfg.w/2, cfg.h/2), 	//Radius of the outermost circle
+		radius = Math.min(cfg.w/1.9, cfg.h/1.9), 	//Radius of the outermost circle
 		Format = d3.format('.0%'),			 	//Percentage formatting
 		angleSlice = Math.PI * 2 / total;		//The width in radians of each "slice"
 
@@ -77,8 +78,8 @@ function RadarChart(id, data, options) {
 		.append("circle")
 		.attr("class", "gridCircle")
 		.attr("r", function(d, i){return radius/cfg.levels*d;})
-		.style("fill", "#CDCDCD")
-		.style("stroke", "#CDCDCD")
+		.style("fill", "#80e5ff")
+		.style("stroke", "#669999")
 		.style("fill-opacity", cfg.opacityCircles)
 		.style("filter" , "url(#glow)");
 
@@ -87,11 +88,11 @@ function RadarChart(id, data, options) {
 	   .data(d3.range(1,(cfg.levels+1)).reverse())
 	   .enter().append("text")
 	   .attr("class", "axisLabel")
-	   .attr("x", 4)
+	   .attr("x", 20)
 	   .attr("y", function(d){return -d*radius/cfg.levels;})
 	   .attr("dy", "0.4em")
-	   .style("font-size", "10px")
-	   .attr("fill", "#737373")
+	   .style("font-size", "12px")
+	   .attr("fill", "#004d66")
 	   .text(function(d,i) { return Format(maxValue * d/cfg.levels); });
 
 	/////////////////////////////////////////////////////////
@@ -108,8 +109,8 @@ function RadarChart(id, data, options) {
 	axis.append("line")
 		.attr("x1", 0)
 		.attr("y1", 0)
-		.attr("x2", function(d, i){ return rScale(maxValue*1.1) * Math.cos(angleSlice*i - Math.PI/2); })
-		.attr("y2", function(d, i){ return rScale(maxValue*1.1) * Math.sin(angleSlice*i - Math.PI/2); })
+		.attr("x2", function(d, i){ return rScale(maxValue*1.02) * Math.cos(angleSlice*i - Math.PI/2); })
+		.attr("y2", function(d, i){ return rScale(maxValue*1.02) * Math.sin(angleSlice*i - Math.PI/2); })
 		.attr("class", "line")
 		.style("stroke", "white")
 		.style("stroke-width", "2px");
@@ -117,7 +118,7 @@ function RadarChart(id, data, options) {
 	//Append the labels at each axis
 	axis.append("text")
 		.attr("class", "legend")
-		.style("font-size", "11px")
+		.style("font-size", "14px").style("font-weight","bold").style("font-family","Georgia").style("fill","#006080")
 		.attr("text-anchor", "middle")
 		.attr("dy", "0.35em")
 		.attr("x", function(d, i){ return rScale(maxValue * cfg.labelFactor) * Math.cos(angleSlice*i - Math.PI/2); })
@@ -257,8 +258,9 @@ function RadarChart(id, data, options) {
 			});
 			$.getJSON("static/data/similarity.json", function(result){
 			/*$.getJSON("/similarity", function(result){*/
-					var color = d3.scaleOrdinal()
-						.range(["#EDC951","#CC333F","#00A0B0"]);
+					// var color = d3.scaleOrdinal()
+					// 	.range(["#EDC951","#CC333F","#00A0B0"]);
+					var color = d3.scaleOrdinal().range(["#e6b800", "#cc3300"])
 					var margin = {top: 100, right: 100, bottom: 100, left: 100},
 						width = Math.min(550, window.innerWidth - 10) - margin.left - margin.right,
 						height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
@@ -339,8 +341,9 @@ var margin = {top: 100, right: 100, bottom: 100, left: 100},
 
 $.getJSON("static/data/similarity.json", function(result){
 		selectedTopicId = nameIdMapping[selectedTopic];
-		var color = d3.scaleOrdinal()
-			.range(["#EDC951","#CC333F","#00A0B0"]);
+		// var color = d3.scaleOrdinal()
+			// .range(["#EDC951","#CC333F","#00A0B0"]);
+		var color = d3.scaleOrdinal().range(["#e6b800", "#cc3300"])
 		var radarChartOptions = {
 			w: width,
 			h: height,

@@ -114,8 +114,7 @@ function drawPieChart(data) {
                 createBubbleChart('jobtype', dataBubbleChart1);
       			});
             $.getJSON("static/data/similarity.json", function(result){
-                var color = d3.scaleOrdinal()
-                	.range(["#EDC951","#CC333F","#00A0B0"]);
+                var color = d3.scaleOrdinal().range(["#e6b800", "#cc3300"])
                 var margin = {top: 100, right: 100, bottom: 100, left: 100},
                 	width = Math.min(550, window.innerWidth - 10) - margin.left - margin.right,
                 	height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
@@ -145,14 +144,35 @@ function drawPieChart(data) {
 		        });});
         });
 
+    // var pieData = pie(data);
+    // var pieAngle = pieData.map(function (p) {
+    //     return (p.startAngle + p.endAngle) / 2 / Math.PI * 180;
+    // });
+    // const innerArc = d3.svg.arc().innerRadius(radius - 0).outerRadius(radius - 0);
 
     arc.append("text")
         .attr("transform", function(d) {
-            return "translate(" + label.centroid(d) + "),rotate(20)";
+            return "translate(" + label.centroid(d) + "),rotate(60)";
         })
+        // .style('text-anchor', function (d, i) { //important
+        //   const p = pieData[i];
+        //   const angle = pieAngle[i];
+        //   if (angle > 0 && angle <= 180) { //text-anchor depends on the angle
+        //     return "end"
+        //   }
+        //   return "start"
+        // })
+        // .attr("transform", function (d, i) { //important
+        //   const p = pieData[i];
+        //   let angle = pieAngle[i];
+        //   if (angle > 0 && angle <= 180) { //rotation depends on the angle
+        //     angle = angle - 180;
+        //   }
+        //   return "translate(${innerArc.centroid(p)}) rotate(${angle+90} 0 0)";
+        // })
         .attr("dy", "0.35em")
         .text(function(d) {
             return d.data.topic;
         })
-        .style('font-size', "15px");
+        .style('font-size', "15px").style("font-family","Helvetica");
 }

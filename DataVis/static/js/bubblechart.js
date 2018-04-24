@@ -1,7 +1,7 @@
 function createBubbleChart(type,dataBubbleChart) {
     var diameter = 400,
         format = d3.format(",d"),
-        color = d3.scaleOrdinal(d3.schemeCategory20c);
+        color = d3.scaleOrdinal(d3.schemeCategory20);
 
     var bubble = d3.pack()
         .size([diameter, diameter])
