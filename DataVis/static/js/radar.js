@@ -261,8 +261,8 @@ function RadarChart(id, data, options) {
 					// var color = d3.scaleOrdinal()
 					// 	.range(["#EDC951","#CC333F","#00A0B0"]);
 					var color = d3.scaleOrdinal().range(["#e6b800", "#cc3300"])
-					var margin = {top: 100, right: 100, bottom: 100, left: 100},
-						width = Math.min(550, window.innerWidth - 10) - margin.left - margin.right,
+					var margin = {top: 100, right: 100, bottom: 100, left: 80},
+						width = Math.min(520, window.innerWidth - 10) - margin.left - margin.right,
 						height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
 					var radarChartOptions = {
 						w: width,
@@ -335,8 +335,8 @@ function RadarChart(id, data, options) {
 //////////////////////// Set-Up //////////////////////////////
 //////////////////////////////////////////////////////////////
 
-var margin = {top: 100, right: 100, bottom: 100, left: 100},
-	width = Math.min(550, window.innerWidth - 10) - margin.left - margin.right,
+var margin = {top: 100, right: 100, bottom: 100, left: 80},
+	width = Math.min(520, window.innerWidth - 10) - margin.left - margin.right,
 	height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
 
 $.getJSON("static/data/similarity.json", function(result){

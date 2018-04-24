@@ -45,44 +45,99 @@ function populateTopQuestions(data) {
 }
 
 function drawPieChart(data) {
-    $('#topicspie').empty();
-    var svg = d3.select("#topicspie"),
-        width = +svg.attr("width"),
-        height = +svg.attr("height"),
-        radius = Math.min(width, height) / 2,
-        g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+  d3.select("#topicspie").html("");
 
+  var matchdata = data
 
-    var color = d3.scaleOrdinal(d3.schemeCategory20c);
+  var players = matchdata.map(function(t) {
+    return t.topic
+  });
 
-    var pie = d3.pie()
-        .sort(null)
-        .value(function(d) {
-            return d.topicCount;
-        });
+  var margin = {top: 45, right: 5, bottom: 50, left: 105};
 
-    var path = d3.arc()
-        .outerRadius(radius - 10)
-        .innerRadius(0);
+  var fullWidth = 500;
+  var fullHeight = 400;
+  // the width and height values will be used in the ranges of our scales
+  var width = fullWidth - margin.right - margin.left;
+  var height = fullHeight - margin.top - margin.bottom;
+  var svg = d3.select('#topicspie').append('svg')
+    .style('width', fullWidth)
+    .style('height', fullHeight)
+    .style('margin','0 auto')
+    .style('margin-top','70')
+    .append('g')
+    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-    var label = d3.arc()
-        .outerRadius(radius - 40)
-        .innerRadius(radius - 40);
+  var playerScale = d3.scaleBand()
+    .domain(players)
+    .range([0, height])
+    .paddingInner(0.4);
 
+  var bandwidth = playerScale.bandwidth();
 
-    var arc = g.selectAll(".arc")
-        .data(pie(data))
-        .enter().append("g")
-        .attr("margin", "auto")
-        .attr("class", "arc");
+  var maxValue = d3.max(matchdata, function(d) {return d.topicCount; });
 
-    arc.append("path")
-        .attr("d", path)
-        .attr("fill", function(d) {
-            return color(d.data.topic);
-        })
-        .on("click", function(d) {
-            selectedTopic = d.data.topic;
+  var valueScale = d3.scaleLinear()
+    .domain([0, maxValue])
+    .range([0, width])
+    .nice();
+
+  var xAxis = d3.axisBottom(valueScale);
+  var yAxis = d3.axisLeft(playerScale);
+
+  var xAxisEle =svg.append('g')
+    .classed('x axis', true)
+    .attr('transform', 'translate(0,' + height + ')')
+    .call(xAxis);
+
+  var yAxisEle = svg.append('g')
+    .classed('y axis', true)
+    .call(yAxis);
+
+  var yText = yAxisEle.append('text')
+    .attr('transform', 'rotate(-90)translate(-' + height/2 + ',0)')
+    .style('text-anchor', 'middle')
+    .style('fill', 'black')
+    .attr('dy', '-9.5em')
+    .style('font-size', 14)
+    .text('Topics');
+
+  var xTextValue = "No. of Questions";
+
+  var xText = xAxisEle.append('text')
+    .attr('transform', 'translate(+' + width/2 + ','+height+')')
+    .style('text-anchor', 'middle')
+    .style('fill', 'black')
+    .attr('dy', '-27em')
+    .style('z-index','1000')
+    .style('font-size', 14)
+    .text(xTextValue);
+
+  var barHolder = svg.append('g')
+    .classed('bar-holder', true);
+
+  barHolder.selectAll('rect.bar')
+      .data(matchdata)
+    .enter().append('rect')
+      .classed('bar', true)
+      .attr('x', 0)
+      .attr('width', function(d) {
+        return valueScale(d.topicCount);
+      })
+      .attr('y', function(d) {
+        return playerScale(d.topic);
+      })
+      .attr('height', bandwidth)
+      .attr('class','bars')
+      .on('mouseover', function(d,i) {
+        d3.select(this).style("fill", 'skyblue');
+      })
+      .on('mouseout', function(d,i) {
+        d3.select(this).style("fill", 'steelblue');
+      })
+      .on('click', function(d,i) {
+        console.log(d.topic);
+            selectedTopic = d.topic;
             selectedTopicId = nameIdMapping[selectedTopic];
             //var questionsData = getTopQuestions();
             //populateTopQuestions(questionsData);
@@ -141,38 +196,7 @@ function drawPieChart(data) {
 							columns: [
 								{ data: 'questionTitle' },
 							]
-		        });});
-        });
-
-    // var pieData = pie(data);
-    // var pieAngle = pieData.map(function (p) {
-    //     return (p.startAngle + p.endAngle) / 2 / Math.PI * 180;
-    // });
-    // const innerArc = d3.svg.arc().innerRadius(radius - 0).outerRadius(radius - 0);
-
-    arc.append("text")
-        .attr("transform", function(d) {
-            return "translate(" + label.centroid(d) + "),rotate(60)";
-        })
-        // .style('text-anchor', function (d, i) { //important
-        //   const p = pieData[i];
-        //   const angle = pieAngle[i];
-        //   if (angle > 0 && angle <= 180) { //text-anchor depends on the angle
-        //     return "end"
-        //   }
-        //   return "start"
-        // })
-        // .attr("transform", function (d, i) { //important
-        //   const p = pieData[i];
-        //   let angle = pieAngle[i];
-        //   if (angle > 0 && angle <= 180) { //rotation depends on the angle
-        //     angle = angle - 180;
-        //   }
-        //   return "translate(${innerArc.centroid(p)}) rotate(${angle+90} 0 0)";
-        // })
-        .attr("dy", "0.35em")
-        .text(function(d) {
-            return d.data.topic;
-        })
-        .style('font-size', "15px").style("font-family","Helvetica");
+		        });
+          });
+      });
 }
