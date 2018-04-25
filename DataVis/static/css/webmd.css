@@ -1,6 +1,14 @@
 body{
   background-color: white;
 }
+span{
+  font-size: 20px;
+}
+.table_data {
+  font-family:Georgia;
+  font-weight:bold;
+  background-color: skyblue;
+}
 #content {
   display:flex;
   flex-direction:column;

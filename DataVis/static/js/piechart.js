@@ -62,7 +62,7 @@ function drawPieChart(data) {
     .attr('transform', 'translate(+' + width/2 + ','+height+')')
     .style('text-anchor', 'middle')
     .style('fill', 'black')
-    .attr('dy', '-27em')
+    .attr('dy','-27em')
     .style('z-index','1000')
     .style('font-size', 20)
     .text(xTextValue);
