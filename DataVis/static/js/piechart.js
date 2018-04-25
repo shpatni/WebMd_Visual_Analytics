@@ -1,49 +1,3 @@
-function getTopQuestions() {
-  var data = [{
-          "question": "populateTopQuestions populateTopQuestions populateTopQuestions populateTopQuestions populateTopQuestions",
-          "answer": "https://stackoverflow.com/questions/17773938/add-a-list-item-through-javascript"
-      },
-      {
-          "question": "populateTopQuestions populateTopQuestions populateTopQuestions populateTopQuestions populateTopQuestions",
-          "answer": "https://stackoverflow.com/questions/17773938/add-a-list-item-through-javascript"
-      },
-      {
-          "question": "populateTopQuestions populateTopQuestions populateTopQuestions populateTopQuestions populateTopQuestions",
-          "answer": "https://stackoverflow.com/questions/17773938/add-a-list-item-through-javascript"
-      },
-      {
-          "question": "populateTopQuestions populateTopQuestions populateTopQuestions populateTopQuestions populateTopQuestions",
-          "answer": "https://stackoverflow.com/questions/17773938/add-a-list-item-through-javascript"
-      },
-      {
-          "question": "populateTopQuestions populateTopQuestions populateTopQuestions populateTopQuestions populateTopQuestions",
-          "answer": "https://stackoverflow.com/questions/17773938/add-a-list-item-through-javascript"
-      }
-  ];
-  return data;
-}
-
-function populateTopQuestions(data) {
-  $('#topQuestionsList').empty();
-
-  var list = document.getElementById("topQuestionsList");
-  var length = data.length;
-  var i = 0;
-  while(i < length) {
-    var entry = document.createElement('li');
-    entry.style.padding = "5px 0px 5px 0px";
-    var link = document.createElement('a');
-    link.style.fontSize = "0.8em";
-    entry.style.textAlign = "left";
-    link.setAttribute("target", "_blank");
-    link.setAttribute("href",  data[i]['answer']);
-    link.innerHTML = data[i]['question'];
-    entry.appendChild(link);
-    list.appendChild(entry);
-    i++;
-  }
-}
-
 function drawPieChart(data) {
   d3.select("#topicspie").html("");
 
@@ -190,6 +144,8 @@ function drawPieChart(data) {
 						table1 = $('#questionTable').DataTable({
                             searching: true,
                             paging: true,
+                            "pageLength": 5,
+                            "pagingType": "simple",
                             "lengthChange": false,
                             data: result,
 							"destroy": true,
