@@ -59,15 +59,18 @@
             {% comment %}$.getJSON("questionsByTopic/?topicId="+selectedTopicId, function(result){{% endcomment %}
         $.getJSON("static/data/painQuestions.txt", function(result){
 						table1 = $('#questionTable').DataTable({
-							{% comment %}data: result[selectedTopicId],{% endcomment %}
-                            data: result,
+							searching: true,
+                            paging: true,
                             "pageLength": 5,
                             "lengthChange": false,
                             "pagingType": "simple",
+                            data: result,
 							"destroy": true,
-							columns: [
-								{ data: 'questionTitle' },
-							]
+                            aoColumns: [
+                               { "data": "Question",  "title": "Question",
+                                "render": function ( data, type, full, meta ) {
+                            return '<a href="'+full.questionURL+'" target="_blank">'+full.questionTitle+'</a>';}}
+                           ]
 		});});
 
         var table;
@@ -165,9 +168,11 @@
                             "pagingType": "simple",
                             data: result,
 							"destroy": true,
-							columns: [
-								{ data: 'questionTitle',}
-							]
+                            aoColumns: [
+                               { "data": "Question",  "title": "Question",
+                                "render": function ( data, type, full, meta ) {
+                            return '<a href="'+full.questionURL+'" target="_blank">'+full.questionTitle+'</a>';}}
+                           ]
 		        });});
             });
             $.ajax({

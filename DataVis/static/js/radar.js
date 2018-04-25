@@ -283,14 +283,16 @@ function RadarChart(id, data, options) {
 						table1 = $('#questionTable').DataTable({
                             searching: true,
                             paging: true,
-							"lengthChange": false,
-							"pageLength": 5,
-							"pagingType": "simple",
-							data: result,
+                            "pageLength": 5,
+                            "lengthChange": false,
+                            "pagingType": "simple",
+                            data: result,
 							"destroy": true,
-							columns: [
-								{ data: 'questionTitle' },
-							]
+                            aoColumns: [
+                               { "data": "Question",  "title": "Question",
+                                "render": function ( data, type, full, meta ) {
+                            return '<a href="'+full.questionURL+'" target="_blank">'+full.questionTitle+'</a>';}}
+                           ]
 						});});
 		});
 

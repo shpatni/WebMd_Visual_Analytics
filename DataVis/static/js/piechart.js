@@ -145,13 +145,15 @@ function drawPieChart(data) {
                             searching: true,
                             paging: true,
                             "pageLength": 5,
-                            "pagingType": "simple",
                             "lengthChange": false,
+                            "pagingType": "simple",
                             data: result,
 							"destroy": true,
-							columns: [
-								{ data: 'questionTitle' },
-							]
+                            aoColumns: [
+                               { "data": "Question",  "title": "Question",
+                                "render": function ( data, type, full, meta ) {
+                            return '<a href="'+full.questionURL+'" target="_blank">'+full.questionTitle+'</a>';}}
+                           ]
 		        });
           });
       });
