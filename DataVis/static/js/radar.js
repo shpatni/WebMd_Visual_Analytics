@@ -282,6 +282,8 @@ function RadarChart(id, data, options) {
                             searching: true,
                             paging: true,
 							"lengthChange": false,
+							"pageLength": 5,
+							"pagingType": "simple",
 							data: result,
 							"destroy": true,
 							columns: [
