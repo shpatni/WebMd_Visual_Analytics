@@ -1,6 +1,14 @@
 body{
   background-color: white;
 }
+span{
+  font-size: 20px;
+}
+.table_data {
+  font-family:Georgia;
+  font-weight:bold;
+  background-color: skyblue;
+}
 #content {
   display:flex;
   flex-direction:column;
@@ -102,6 +110,9 @@ ul li:hover {
   text-anchor: end;
 }
 .bars {
+  cursor: pointer;
+}
+.circle {
   cursor: pointer;
 }
 .blue { background-color: steelblue; }

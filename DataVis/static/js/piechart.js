@@ -53,7 +53,7 @@ function drawPieChart(data) {
     .style('text-anchor', 'middle')
     .style('fill', 'black')
     .attr('dy', '-9.5em')
-    .style('font-size', 14)
+    .style('font-size', 20)
     .text('Topics');
 
   var xTextValue = "No. of Questions";
@@ -62,9 +62,9 @@ function drawPieChart(data) {
     .attr('transform', 'translate(+' + width/2 + ','+height+')')
     .style('text-anchor', 'middle')
     .style('fill', 'black')
-    .attr('dy', '-27em')
+    .attr('dy','-27em')
     .style('z-index','1000')
-    .style('font-size', 14)
+    .style('font-size', 20)
     .text(xTextValue);
 
   var barHolder = svg.append('g')
@@ -124,8 +124,8 @@ function drawPieChart(data) {
       			});
             $.getJSON("static/data/similarity.json", function(result){
                 var color = d3.scaleOrdinal().range(["#e6b800", "#cc3300"])
-                var margin = {top: 100, right: 100, bottom: 100, left: 100},
-                	width = Math.min(550, window.innerWidth - 10) - margin.left - margin.right,
+                var margin = {top: 100, right: 100, bottom: 100, left: 80},
+                	width = Math.min(520, window.innerWidth - 10) - margin.left - margin.right,
                 	height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
         				var radarChartOptions = {
         					w: width,
