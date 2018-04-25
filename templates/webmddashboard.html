@@ -60,6 +60,9 @@
 						table1 = $('#questionTable').DataTable({
 							{% comment %}data: result[selectedTopicId],{% endcomment %}
                             data: result,
+                            "pageLength": 5,
+                            "lengthChange": false,
+                            "pagingType": "simple",
 							"destroy": true,
 							columns: [
 								{ data: 'questionTitle' },
@@ -156,11 +159,13 @@
 						table1 = $('#questionTable').DataTable({
                             searching: true,
                             paging: true,
+                            "pageLength": 5,
                             "lengthChange": false,
+                            "pagingType": "simple",
                             data: result,
 							"destroy": true,
 							columns: [
-								{ data: 'questionTitle' },
+								{ data: 'questionTitle',}
 							]
 		        });});
             });
@@ -207,6 +212,7 @@
                         <div class="card" style="border: 0;background: linear-gradient(#e6f9ff, #ffffff);">
                             <!--Card content-->
                             <div class="card-body">
+                                <h4 class="card-title" style="font-family:Georgia !important;font-weight:bold;"><font color="#007399">Topics</font></h4>
                                 <table id="example" class="table table-striped table-bordered hover stripe">
                                     <thead>
                                         <tr>
