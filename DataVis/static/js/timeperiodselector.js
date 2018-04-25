@@ -51,13 +51,13 @@ var updateChart = function(settings) {
             endDate = dend.value._d.getDate();
             end = endYear+"-"+endMonth+"-"+endDate
 
-            dataURL = "/pie_chart_data/??start_date="+start+"&end_date="+end;
+            dataURL = "/pie_chart_data/?start_date="+start+"&end_date="+end;
+
             $.ajax({
           		url:dataURL,
           		type:"GET",
           	}).done(function(response){
           		//check for success
-                console.log(response);
               drawPieChart(response);
           	});
         } else if (process === 'dragstart') {
