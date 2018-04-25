@@ -104,5 +104,8 @@ ul li:hover {
 .bars {
   cursor: pointer;
 }
+.circle {
+  cursor: pointer;
+}
 .blue { background-color: steelblue; }
 .blue select    { color: #fff; }

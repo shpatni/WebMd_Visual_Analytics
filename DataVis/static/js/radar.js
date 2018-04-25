@@ -211,6 +211,7 @@ function RadarChart(id, data, options) {
 		.style("fill", "none")
 		.style("pointer-events", "all")
 		.on("mouseover", function(d,i) {
+			d3.select(this).attr("class", 'circle');
 			newX =  parseFloat(d3.select(this).attr('cx')) - 10;
 			newY =  parseFloat(d3.select(this).attr('cy')) - 10;
 
@@ -222,6 +223,7 @@ function RadarChart(id, data, options) {
 				.style('opacity', 1);
 		})
 		.on("mouseout", function(){
+			$(this).removeClass( "circle" )
 			tooltip.transition().duration(200)
 				.style("opacity", 0);
 		})
