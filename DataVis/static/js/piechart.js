@@ -190,6 +190,8 @@ function drawPieChart(data) {
 						table1 = $('#questionTable').DataTable({
                             searching: true,
                             paging: true,
+                            "pageLength": 5,
+                            "pagingType": "simple",
                             "lengthChange": false,
                             data: result,
 							"destroy": true,
