@@ -56,7 +56,7 @@ function drawPieChart(data) {
     .style('font-size', '1.5em')
     .text('Topics');
 
-  var xTextValue = "No. of Questions";
+  var xTextValue = "No. of Answers";
 
   var xText = xAxisEle.append('text')
     .attr('transform', 'translate(+' + width/2 + ','+height+')')
