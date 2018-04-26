@@ -52,8 +52,8 @@ function drawPieChart(data) {
     .attr('transform', 'rotate(-90)translate(-' + height/2 + ',0)')
     .style('text-anchor', 'middle')
     .style('fill', 'black')
-    .attr('dy', '-9.5em')
-    .style('font-size', 20)
+    .attr('dy', '-6.2em')
+    .style('font-size', '1.5em')
     .text('Topics');
 
   var xTextValue = "No. of Questions";
@@ -62,9 +62,9 @@ function drawPieChart(data) {
     .attr('transform', 'translate(+' + width/2 + ','+height+')')
     .style('text-anchor', 'middle')
     .style('fill', 'black')
-    .attr('dy','-38em')
+    .attr('dy','-25.5em')
     .style('z-index','1000')
-    .style('font-size', 20)
+    .style('font-size', '1.5em')
     .text(xTextValue);
 
   var barHolder = svg.append('g')

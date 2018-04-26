@@ -24,7 +24,7 @@ function getSettings() {
         right: 50
     };
     var dim = {
-        width: 400,
+        width: 450,
         height: 400
     };
 
