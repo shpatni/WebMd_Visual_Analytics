@@ -283,7 +283,7 @@ function RadarChart(id, data, options) {
 						table1 = $('#questionTable').DataTable({
                             searching: true,
                             paging: true,
-                            "pageLength": 5,
+                            "pageLength": 9,
                             "lengthChange": false,
                             "pagingType": "simple",
                             data: result,

@@ -7,10 +7,10 @@ function drawPieChart(data) {
     return t.topic
   });
 
-  var margin = {top: 45, right: 5, bottom: 50, left: 105};
+  var margin = {top: 20, right: 5, bottom: 10, left: 105};
 
-  var fullWidth = 500;
-  var fullHeight = 400;
+  var fullWidth = 550;
+  var fullHeight = 450;
   // the width and height values will be used in the ranges of our scales
   var width = fullWidth - margin.right - margin.left;
   var height = fullHeight - margin.top - margin.bottom;
@@ -62,7 +62,7 @@ function drawPieChart(data) {
     .attr('transform', 'translate(+' + width/2 + ','+height+')')
     .style('text-anchor', 'middle')
     .style('fill', 'black')
-    .attr('dy','-27em')
+    .attr('dy','-38em')
     .style('z-index','1000')
     .style('font-size', 20)
     .text(xTextValue);
@@ -144,7 +144,7 @@ function drawPieChart(data) {
 						table1 = $('#questionTable').DataTable({
                             searching: true,
                             paging: true,
-                            "pageLength": 5,
+                            "pageLength": 9,
                             "lengthChange": false,
                             "pagingType": "simple",
                             data: result,

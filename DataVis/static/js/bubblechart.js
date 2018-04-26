@@ -1,5 +1,5 @@
 function createBubbleChart(type,dataBubbleChart) {
-    var diameter = 400,
+    var diameter = 550,
         format = d3.format(",d"),
         color = d3.scaleOrdinal(d3.schemeCategory20);
 
